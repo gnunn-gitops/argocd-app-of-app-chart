@@ -1,13 +1,6 @@
 default:
   project:
-    roles: |
-      - name: read-only
-        description: Read-only privileges within project
-        policies:
-        - p, proj:{{ $.curProjName }}:read-only, applications, get, {{ $.curProjName }}/*, allow
-    destinations: |
-      - namespace: {{ $.Values.default.app.destination.namespace | required "Missing proj dest namespace"}}
-        server: {{ $.Values.default.app.destination.server | required "Missing proj dest server" }}
+
   app:
     enableAutoSync: null
     autoSyncPrune: true
