@@ -6,7 +6,7 @@ kind: Application
 metadata:
   name: {{ $key }}
 {{- if $val.labels }}
-  annotations:
+  labels:
 {{- with $val.labels }}
 {{ toYaml . | indent 4 }}
 {{- end }}
