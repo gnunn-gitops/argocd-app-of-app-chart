@@ -1,5 +1,9 @@
 default:
   app:
+    annotations:
+      annotation: test
+    labels:
+      label: test
     enabled: true
     enableAutoSync: true
     autoSyncPrune: false

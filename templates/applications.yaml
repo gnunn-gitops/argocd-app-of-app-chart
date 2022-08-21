@@ -5,7 +5,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: {{ $key }}
-{{- if $val.labels | $.Values.default.app.labels }}
+{{- if or $val.labels $.Values.default.app.labels }}
   labels:
 {{- with $val.labels }}
 {{ toYaml . | indent 4 }}
@@ -15,7 +15,7 @@ metadata:
 {{- end }}
 {{- end }}
 
-{{- if $val.annotations | $.Values.default.app.annotations }}
+{{- if or $val.annotations $.Values.default.app.annotations }}
   annotations:
 {{- with $val.annotations }}
 {{ toYaml . | indent 4 }}
