@@ -18,6 +18,10 @@ default:
 projects:
 
   cluster-config:
+    annotations:
+      project: test
+    labels:
+      project: test
     description: Project for overall cluster configuration
     namespace: openshift-gitops
     sourceRepos:
