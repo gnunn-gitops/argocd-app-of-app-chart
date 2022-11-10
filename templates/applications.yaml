@@ -43,6 +43,12 @@ spec:
     {{- if hasKey $val "syncPolicyRetry" }}
     retry: {{- toYaml $val.syncPolicyRetry | nindent 6 }}
     {{- end }}
+    {{- if hasKey $val "syncOptions" }}
+    syncOptions:
+      {{- with $val.syncOptions }}
+      {{ toYaml . }}
+      {{- end }}    
+    {{- end}}
 {{- end }}
   source:
     path: {{ tpl $val.source.path $ }}
