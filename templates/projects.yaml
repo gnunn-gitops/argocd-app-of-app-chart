@@ -26,10 +26,14 @@ spec:
 {{ toYaml $val.sourceRepos | indent 4 }}
 {{- if $val.roles }}
   roles:
-{{- tpl $val.roles $ | indent 4 }}
+{{- with $val.roles }}
+{{ toYaml . | indent 4 }}
+{{- end }}
 {{- else if (($.Values.default.project).roles) }}
   roles:
-{{ tpl $.Values.default.project.roles $ | indent 4 }}
+{{- with $.Values.default.project.roles }}
+{{ toYaml . | indent 4 }}
+{{- end }}
 {{- end }}
 {{- if $val.destinations }}
   destinations:

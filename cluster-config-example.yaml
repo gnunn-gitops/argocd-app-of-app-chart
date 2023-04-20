@@ -46,6 +46,14 @@ projects:
       clusterResourceWhitelist:
       - group: '*'
         kind: '*'
+    roles:
+      - description: Tenat Admins
+        name: user
+        groups:
+          - tenants-admins
+        policies:
+          - p, proj:tenants:user, applications, get, tenants/*, allow
+          - p, proj:tenants:user, applications, sync, tenants/*, allow
 
 applications:
 
