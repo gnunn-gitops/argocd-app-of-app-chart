@@ -6,21 +6,21 @@ kind: Application
 metadata:
   name: {{ $key }}
 {{- if or $val.labels $.Values.default.app.labels }}
+{{- $appLabels := $val.labels }}
+{{- $defaultLabels := $.Values.default.app.labels }}
+{{- $labels := merge $appLabels $defaultLabels }}
   labels:
-{{- with $val.labels }}
-{{ toYaml . | indent 4 }}
-{{- end }}
-{{- with $.Values.default.app.labels }}
+{{- with $labels }}
 {{ toYaml . | indent 4 }}
 {{- end }}
 {{- end }}
 
 {{- if or $val.annotations $.Values.default.app.annotations }}
+{{- $appAnnotations := $val.annotations }}
+{{- $defaultAnnotations := $.Values.default.app.annotations }}
+{{- $annotations := merge $appAnnotations $defaultAnnotations }}
   annotations:
-{{- with $val.annotations }}
-{{ toYaml . | indent 4 }}
-{{- end }}
-{{- with $.Values.default.app.annotations }}
+{{- with $annotations }}
 {{ toYaml . | indent 4 }}
 {{- end }}
 {{- end }}
@@ -47,7 +47,7 @@ spec:
     syncOptions:
       {{- with $val.syncOptions }}
       {{ toYaml . }}
-      {{- end }}    
+      {{- end }}
     {{- end}}
 {{- end }}
   source:

@@ -58,6 +58,8 @@ projects:
 applications:
 
   config-acs:
+    labels:
+      label: overwrite-test
     annotations:
       argocd.argoproj.io/compare-options: IgnoreExtraneous
       argocd.argoproj.io/sync-wave: '21'
@@ -65,6 +67,9 @@ applications:
       path: components/apps/acs-operator/overlays/oauth
 
   config-alertmanager:
+    labels:
+      label: overwrite-test
+      newLabelTest: new-label-test
     annotations:
       argocd.argoproj.io/compare-options: IgnoreExtraneous
       argocd.argoproj.io/sync-wave: '11'
