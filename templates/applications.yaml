@@ -27,7 +27,15 @@ metadata:
 spec:
   destination:
     namespace: {{ (($val.destination).namespace) | default $.Values.default.app.destination.namespace | required (printf "No destination.namespace specified for %s" $key ) }}
-    server: {{ (($val.destination).server) | default $.Values.default.app.destination.server | required (printf "No destination.server specified for %s" $key ) }}
+    {{- $name := (($val.destination).name) | default $.Values.default.app.destination.name }}
+    {{- $server := ($val.destination).server | default $.Values.default.app.destination.server }}
+    {{- if $name }}
+    name: {{ $name }}
+    {{- else if $server }}
+    server: {{ $server }}
+    {{- else}}
+    {{- required (printf "No destination.server or destination.name specified for %s" $key ) }}
+    {{- end}}
 {{- if $.Values.projectOverride }}
   project: {{ $.Values.projectOverride }}
 {{- else }}

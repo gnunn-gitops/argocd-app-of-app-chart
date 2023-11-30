@@ -74,6 +74,7 @@ applications:
       argocd.argoproj.io/compare-options: IgnoreExtraneous
       argocd.argoproj.io/sync-wave: '11'
     destination:
+      name: in-cluster
       namespace: openshift-monitoring
     source:
       path: components/configs/alertmanager/base
